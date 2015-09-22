@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class cmd {
 
-    static String homedir = System.getProperty("user.home");
+    static String homedir = System.getProperty("user.dir");
     
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner a = new Scanner(System.in);
         String ans = "Y";
-        String filename = "sample"; //ibahin nyo na lang to
+        String language;
 
         do {
             //main menu
@@ -21,18 +21,24 @@ public class cmd {
             System.out.println("[3] Compile C\n[4] Run C\n\n");
             System.out.println("[5] Compile C++\n[6] Run C++\n\n");
             System.out.println("[7] Compile Java\n[8] Run Java\n\n");
-
             int choice = a.nextInt();
 
             switch (choice) {
                 case 1:
-                    CSharpCompiler(filename + ".cs");
+                    CSharpCompiler();
                     break;
                 case 2:
-                    CSharpRun(filename + ".exe");
+                    language = "C#"; //folder name
+                    Run(language);
                     break;
-                case 3: break;
-                case 4: break;
+                case 3: 
+                    CCompiler();
+                    break;
+                case 4: 
+                    language = "C";
+                    Run(language);
+                    break;
+
                 case 5: break;
                 case 6: break;
                 case 7: break;
@@ -50,20 +56,23 @@ public class cmd {
         } while (true);
     }
 
-    public static void CSharpCompiler(String cs) throws IOException, InterruptedException {
-        //create folder
-        //process("mkdir compiler");
-        //compile
-        CSharpProcess(homedir + "\\compiler\\", "c:\\Windows\\Microsoft.NET\\Framework\\v3.5\\CSC.EXE " + cs);
+    public static void CSharpCompiler() throws IOException, InterruptedException {
+        Process(homedir + "\\C#\\", " c:\\Windows\\Microsoft.NET\\Framework\\v3.5\\csc /out:thesis.exe *.cs");
     }
 
-    public static void CSharpRun(String filename) throws IOException, InterruptedException {
-        String[] argss = {"cmd", "/c", "start", homedir + "\\compiler\\" + filename};
+    public static void CCompiler() throws IOException, InterruptedException{
+        Process(homedir + "\\C\\", " g++ *.c -o thesis");
+    }
+    
+    //Runs the compiled program regardless of language
+    public static void Run(String filename) throws IOException, InterruptedException {
+        String[] argss = {"cmd", "/c", "start", homedir + "\\" + language + "\\thesis"};
         ProcessBuilder pb = new ProcessBuilder(argss);
         pb.start();
     }
-
-    public static void CSharpProcess(String command, String exe) throws IOException, InterruptedException {
+    
+    //function to process command lines
+    public static void Process(String command, String exe) throws IOException, InterruptedException {
         final Process p;
         if (command != null) {
             p = Runtime.getRuntime().exec(exe, null, new File(command));
