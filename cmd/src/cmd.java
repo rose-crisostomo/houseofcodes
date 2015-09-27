@@ -69,7 +69,7 @@ public class cmd {
     }
     
     public static void CppCompiler() throws IOException, InterruptedException{
-        Process(homedir + "\\C++\\", " g++ *.c++ -o thesis");
+        Process(homedir + "\\C++\\", " g++ *.cpp -o thesis");
     }
     
     public static void JavaCompiler() throws IOException, InterruptedException{
