@@ -1,7 +1,8 @@
-#include <iostream.h>
+#include <iostream>
+using namespace std;
 
-main()
+int main()
 {
-    cout << "Hello World!";
-    return 0;
+	cout << "Hello World!";
+	system("pause > 0");
 }
