@@ -37,8 +37,10 @@ public class cmd {
                     break;
 
                 case 5:
+                    CppCompiler();
                     break;
                 case 6: 
+                    Run(homedir + "\\C++\\thesis");
                     break;
                 case 7: JavaCompiler();
                     break;
@@ -64,6 +66,10 @@ public class cmd {
 
     public static void CCompiler() throws IOException, InterruptedException{
         Process(homedir + "\\C\\", " g++ *.c -o thesis");
+    }
+    
+    public static void CppCompiler() throws IOException, InterruptedException{
+        Process(homedir + "\\C++\\", " g++ *.c++ -o thesis");
     }
     
     public static void JavaCompiler() throws IOException, InterruptedException{
