@@ -37,11 +37,7 @@ public class cmd {
                     break;
 
                 case 5:
-<<<<<<< HEAD
-                    CplusplusCompiler();
-=======
                     CppCompiler();
->>>>>>> origin/master
                     break;
                 case 6: 
                     Run(homedir + "\\C++\\thesis");
@@ -73,15 +69,11 @@ public class cmd {
     }
     
     public static void CppCompiler() throws IOException, InterruptedException{
-        Process(homedir + "\\C++\\", " g++ *.c++ -o thesis");
+        Process(homedir + "\\C++\\", " g++ *.cpp -o thesis");
     }
     
     public static void JavaCompiler() throws IOException, InterruptedException{
         Process(homedir + "\\Java\\", "C:\\Program Files\\Java\\jdk" + System.getProperty("java.version") + "\\bin\\javac *.java");
-    }
-    
-    public static void CplusplusCompiler() throws IOException, InterruptedException{
-        Process(homedir + "\\C\\", " g++ *.cpp -o thesis");
     }
     
     //Runs the compiled program regardless of language
