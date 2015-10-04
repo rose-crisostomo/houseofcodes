@@ -23,7 +23,7 @@ public class ServerPanel extends JPanel {
 	}
 	
 	public void addLog(String text){
-		textPane.setText(text);
+		textPane.setText(textPane.getText() + text);
 	}
 	
 }

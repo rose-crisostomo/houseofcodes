@@ -23,8 +23,6 @@ public class Client extends JFrame{
     private BufferedReader in;
     private PrintWriter out;
     private JFrame frame = new JFrame("Capitalize Client");
-    private JTextField dataField = new JTextField(40);
-    private JTextArea messageArea = new JTextArea(8, 60);
     
 
     /**
@@ -35,9 +33,9 @@ public class Client extends JFrame{
      */
     public Client(String[] data) throws IOException {
     	connectToServer();
-    	out.println(data);
+    	for(int i=0; i<data.length; i++)
+    		out.println(data[i]);
     }
-
 
     /**
      * Implements the connection logic by prompting the end user for
@@ -60,11 +58,6 @@ public class Client extends JFrame{
         in = new BufferedReader(
                 new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
-
-        // Consume the initial welcoming messages from the server
-        for (int i = 0; i < 3; i++) {
-            messageArea.append(in.readLine() + "\n");
-        }
     }
 
     /**
