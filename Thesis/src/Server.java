@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import javax.swing.JFrame;
+
 /**
  * A server program which accepts requests from clients to
  * capitalize strings.  When clients connect, a new thread is
@@ -16,8 +18,9 @@ import java.net.Socket;
  * dependent.  If you ran it from a console window with the "java"
  * interpreter, Ctrl+C generally will shut it down.
  */
-public class Server {
+public class Server extends JFrame {
 
+	private ServerPanel currentPanel;
     /**
      * Application method to run the server runs in an infinite loop
      * listening on port 9898.  When a connection is requested, it
@@ -27,18 +30,32 @@ public class Server {
      * messages.  It is certainly not necessary to do this.
      */
     public static void main(String[] args) throws Exception {
-        System.out.println("The capitalization server is running.");
+    	Server s = new Server();
+    	s.setVisible(true);
+    	s.setSize(700,500);
+    	
+    	System.out.println("The capitalization server is running.");
         int clientNumber = 0;
         ServerSocket listener = new ServerSocket(9898);
         try {
             while (true) {
-                new Capitalizer(listener.accept(), clientNumber++).start();
+            	new Capitalizer(listener.accept(), clientNumber++).start();
             }
         } finally {
             listener.close();
         }
     }
+    
+    public Server() {
+    	setTitle("SERVER");
+		currentPanel = new ServerPanel();
+		setupFrame();
+    }
 
+    public void setupFrame()
+	{
+		this.setContentPane(currentPanel);
+	}
     /**
      * A private thread to handle capitalization requests on a particular
      * socket.  The client terminates the dialogue by sending a single line
@@ -47,6 +64,7 @@ public class Server {
     private static class Capitalizer extends Thread {
         private Socket socket;
         private int clientNumber;
+        private ServerPanel currentPanel;
 
         public Capitalizer(Socket socket, int clientNumber) {
             this.socket = socket;
@@ -75,13 +93,23 @@ public class Server {
 
                 // Get messages from the client, line by line; return them
                 // capitalized
-                while (true) {
-                    String input = in.readLine();
-                    if (input == null || input.equals(".")) {
-                        break;
-                    }
-                    out.println(input.toUpperCase());
+                
+                String lineread = "", received = "";
+                boolean done = false;
+                while (((lineread = in.readLine()) != null) && (!done)){
+                  received += "Received from Client: " + lineread + "\n";
+                  if (lineread.compareToIgnoreCase("Bye") == 0) 
+                	  done = true;
                 }
+                log(received);
+                //out.println(received);
+//                while (true) {
+//                    String input = in.readLine();
+//                    if (input == null || input.equals(".")) {
+//                        break;
+//                    }
+//                    out.println(input.toUpperCase());
+//                }
             } catch (IOException e) {
                 log("Error handling client# " + clientNumber + ": " + e);
             } finally {
