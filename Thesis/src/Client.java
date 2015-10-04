@@ -18,52 +18,26 @@ import javax.swing.JTextField;
  * strings and a textarea to see the results of capitalizing
  * them.
  */
-public class Client {
+public class Client extends JFrame{
 
     private BufferedReader in;
     private PrintWriter out;
     private JFrame frame = new JFrame("Capitalize Client");
     private JTextField dataField = new JTextField(40);
     private JTextArea messageArea = new JTextArea(8, 60);
+    
 
     /**
      * Constructs the client by laying out the GUI and registering a
      * listener with the textfield so that pressing Enter in the
      * listener sends the textfield contents to the server.
+     * @throws IOException 
      */
-    public Client() {
-
-        // Layout GUI
-        messageArea.setEditable(false);
-        frame.getContentPane().add(dataField, "North");
-        frame.getContentPane().add(new JScrollPane(messageArea), "Center");
-
-        // Add Listeners
-        dataField.addActionListener(new ActionListener() {
-            /**
-             * Responds to pressing the enter key in the textfield
-             * by sending the contents of the text field to the
-             * server and displaying the response from the server
-             * in the text area.  If the response is "." we exit
-             * the whole application, which closes all sockets,
-             * streams and windows.
-             */
-            public void actionPerformed(ActionEvent e) {
-                out.println(dataField.getText());
-                   String response;
-                try {
-                    response = in.readLine();
-                    if (response == null || response.equals("")) {
-                          System.exit(0);
-                      }
-                } catch (IOException ex) {
-                       response = "Error: " + ex;
-                }
-                messageArea.append(response + "\n");
-                dataField.selectAll();
-            }
-        });
+    public Client(String[] data) throws IOException {
+    	connectToServer();
+    	out.println(data);
     }
+
 
     /**
      * Implements the connection logic by prompting the end user for
@@ -96,11 +70,4 @@ public class Client {
     /**
      * Runs the client application.
      */
-    public static void main(String[] args) throws Exception {
-        Client client = new Client();
-        client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        client.frame.pack();
-        client.frame.setVisible(true);
-        client.connectToServer();
-    }
 }
