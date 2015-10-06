@@ -17,4 +17,11 @@ public class ServerFrame extends JFrame {
 		this.setContentPane(currentPanel);
 	}
 	
+	public static void main(String[] args){
+		java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ServerFrame().setVisible(true);
+            }
+        });
+	}
 }
