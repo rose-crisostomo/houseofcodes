@@ -22,28 +22,14 @@ public class Client extends JFrame{
 
     private BufferedReader in;
     private PrintWriter out;
-    private JFrame frame = new JFrame("Capitalize Client");
+    private JFrame frame = new JFrame("CLIENT");
     
-
-    /**
-     * Constructs the client by laying out the GUI and registering a
-     * listener with the textfield so that pressing Enter in the
-     * listener sends the textfield contents to the server.
-     * @throws IOException 
-     */
     public Client(String[] data) throws IOException {
     	connectToServer();
     	for(int i=0; i<data.length; i++)
     		out.println(data[i]);
     }
 
-    /**
-     * Implements the connection logic by prompting the end user for
-     * the server's IP address, connecting, setting up streams, and
-     * consuming the welcome messages from the server.  The Capitalizer
-     * protocol says that the server sends three lines of text to the
-     * client immediately after establishing a connection.
-     */
     public void connectToServer() throws IOException {
 
         // Get the server address from a dialog box.
@@ -59,8 +45,4 @@ public class Client extends JFrame{
                 new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
     }
-
-    /**
-     * Runs the client application.
-     */
 }

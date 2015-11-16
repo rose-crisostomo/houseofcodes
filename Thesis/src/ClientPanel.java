@@ -19,7 +19,7 @@ import java.awt.Button;
 public class ClientPanel extends JPanel implements ActionListener {
 
 	private SpringLayout currentLayout;
-	private String[] data = new String[2];
+	private String[] data = new String[3];
 	JTextPane textPane = new JTextPane();
 	ButtonGroup group = new ButtonGroup();
 	Button button = new Button("Submit");
@@ -88,7 +88,9 @@ public class ClientPanel extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == button) {
 			data[0] = group.getSelection().getActionCommand();
-			data[1] = textPane.getText();
+			data[2] = textPane.getText();
+			String[] lines = data[2].split("\r\n|\r|\n");
+			data[1] = String.valueOf(lines.length);
 			try {
 				Client client = new Client(data);
 			} catch (IOException e1) {
