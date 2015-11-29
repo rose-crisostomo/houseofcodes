@@ -24,55 +24,55 @@ public class cmd extends JFrame{
     	cmd gui = new cmd();
     	gui.setVisible(true);
     	gui.setSize(450, 400);
-    	//        Scanner a = new Scanner(System.in);
-//        String ans = "Y";
-//
-//        do {
-//            //main menu
-//            System.out.println("[1] Compile C#\n[2] Run C#\n\n");
-//            System.out.println("[3] Compile C\n[4] Run C\n\n");
-//            System.out.println("[5] Compile C++\n[6] Run C++\n\n");
-//            System.out.println("[7] Compile Java\n[8] Run Java\n\n");
-//            int choice = a.nextInt();
-//
-//            switch (choice) {
-//                case 1:
-//                    CSharpCompiler();
-//                    break;
-//                case 2:
-//                    Run(homedir + "\\C#\\thesis");
-//                    break;
-//                case 3: 
-//                    CCompiler();
-//                    break;
-//                case 4: 
-//                    Run(homedir + "\\C\\thesis");
-//                    break;
-//
-//                case 5:
-//                    CppCompiler();
-//                    break;
-//                case 6: 
-//                    Run(homedir + "\\C++\\thesis");
-//                    break;
-//                case 7: JavaCompiler();
-//                    break;
-//                case 8: 
-//                    Run("java sample");
-//                    break;
-//            }
-//
-//            System.out.println("Enter again [y/n]: ");
-//            ans = a.next();
-//            ans = ans.toUpperCase();
-//            
-//            if(ans != "Y"){
-//                break;
-//            }
-//
-//        } while (true);
-//        
-//        a.close();
+    	        Scanner a = new Scanner(System.in);
+        String ans = "Y";
+
+        do {
+            //main menu
+            System.out.println("[1] Compile C#\n[2] Run C#\n\n");
+            System.out.println("[3] Compile C\n[4] Run C\n\n");
+            System.out.println("[5] Compile C++\n[6] Run C++\n\n");
+            System.out.println("[7] Compile Java\n[8] Run Java\n\n");
+            int choice = a.nextInt();
+
+            switch (choice) {
+                case 1:
+                    CSharpCompiler();
+                    break;
+                case 2:
+                    Run(homedir + "\\C#\\thesis");
+                    break;
+                case 3: 
+                    CCompiler();
+                    break;
+                case 4: 
+                    Run(homedir + "\\C\\thesis");
+                    break;
+
+                case 5:
+                    CppCompiler();
+                    break;
+                case 6: 
+                    Run(homedir + "\\C++\\thesis");
+                    break;
+                case 7: JavaCompiler();
+                    break;
+                case 8: 
+                    Run("java sample");
+                    break;
+            }
+
+            System.out.println("Enter again [y/n]: ");
+            ans = a.next();
+            ans = ans.toUpperCase();
+            
+            if(ans != "Y"){
+                break;
+            }
+
+        } while (true);
+        
+        a.close();
     }
 
     public static void CSharpCompiler() throws IOException, InterruptedException {

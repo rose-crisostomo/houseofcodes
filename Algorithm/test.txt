@@ -1,0 +1,39 @@
+package examgrades;
+import java.io.*;
+
+public class ExamGrades {
+    public static InputStreamReader reader = new InputStreamReader (System.in);
+    public static BufferedReader input = new BufferedReader(reader);
+    
+
+
+
+    public static String avg(int x, int y, int z)
+    {
+        double avg = ((x + y + z) / 3);
+        
+        System.out.println(avg + "");
+        
+        if(avg >= 60)
+            return ":-)";
+        else
+            return ":-(";
+    }
+	
+    public static void main(String[] args) throws Exception {
+        
+        int x1, x2, x3, ave;
+        
+        System.out.print("ENTER GRADE FOR EXAM #1: ");
+        x1 = Integer.parseInt(input.readLine());
+        
+        System.out.print("ENTER GRADE FOR EXAM #2: ");
+        x2 = Integer.parseInt(input.readLine());
+        
+        System.out.print("ENTER GRADE FOR EXAM #3: ");
+        x3 = Integer.parseInt(input.readLine());
+        
+        System.out.println(avg(x1, x2, x3));        
+    }
+    
+}
